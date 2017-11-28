@@ -15,10 +15,13 @@ import glob
 import argparse
 import tkFileDialog
 import subprocess
+import spur      # use 'pip install spur' to install
+import webbrowser
+from Tkinter import *
+
 import fileinput
 import StringIO
 # from lxml import etree
-from Tkinter import *
 from shutil import copyfile
 
 
@@ -28,7 +31,35 @@ def listdir_nohidden(path):
 
 def gui():
     """make the GUI version of this command that is run if no options are provided on the command line"""
-    
+
+    def button_help_callback():
+        """ what to do when the "Help" button is pressed """
+
+        filename = "./McFate_Household_CPanel.md.html"
+        webbrowser.open('file://' + os.path.realpath(filename))
+        statusText.set("The help file, 'McFate_Household_CPanel.md.html' should now be visible in a new browser tab.")
+        message.configure(fg="dark green")
+
+
+    def button_solr_post_callback():
+        """ what to do when the "Post Solr on Fileserver" button is pressed """
+
+        target = entry.get()
+        statusText.set("/opt/solr/bin/post for {} is running on fileserver...".format(target))
+        message.configure(fg="red")
+        message.update()
+
+        shell = spur.SshShell(hostname="fileserver", username="mark", password="sawdust60")
+        target_path = "/files/STORAGE/{}".format(target)
+        result = shell.run(["/opt/solr/bin/post", "-c", "fs-core", target_path])
+        # result = shell.run(["ls", "-al", "/."])
+
+        statusText.set("/opt/solr/bin/post on fileserver is complete with a return code of {}".format(result.return_code))
+        message.configure(fg="dark green")
+
+        # print result.output
+
+
     def button_backup_email_callback():
         """ what to do when the "Backup _Archived_EMail_" button is pressed """
 
@@ -226,9 +257,13 @@ def gui():
     
     button_browse = Button(root, text="Browse", command=button_browse_callback)
     button_backup_email = Button(root, text="Backup _Archived_EMail_ from Mark's MacBook", command=button_backup_email_callback)
+    button_solr_post = Button(root, text="Post //fileserver/files/STORAGE/? Files to Solr", command=button_solr_post_callback)
+    button_help = Button(root, text="Help", command=button_help_callback)
     button_exit = Button(root, text="Exit", command=sys.exit)
     button_browse.pack()
     button_backup_email.pack()
+    button_solr_post.pack()
+    button_help.pack()
     button_exit.pack()
 
     separator = Frame(root, height=2, bd=1, relief=SUNKEN)
