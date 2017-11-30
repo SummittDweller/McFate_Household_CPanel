@@ -17,7 +17,7 @@ import tkFileDialog
 import subprocess
 import spur      # use 'pip install spur' to install
 import webbrowser
-from Tkinter import *
+from Tkinter import *  # use 'brew install homebrew/dupes/tcl-tk' to install
 
 import fileinput
 import StringIO
@@ -49,7 +49,7 @@ def gui():
         message.configure(fg="red")
         message.update()
 
-        shell = spur.SshShell(hostname="fileserver", username="mark", password="sawdust60")
+        shell = spur.SshShell(hostname="fileserver", username="mark")
         target_path = "/files/STORAGE/{}".format(target)
         result = shell.run(["/opt/solr/bin/post", "-c", "fs-core", target_path])
         # result = shell.run(["ls", "-al", "/."])
