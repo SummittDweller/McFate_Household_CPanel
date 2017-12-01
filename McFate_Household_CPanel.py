@@ -49,12 +49,33 @@ def gui():
         message.configure(fg="red")
         message.update()
 
-        shell = spur.SshShell(hostname="fileserver", username="mark")
-        target_path = "/files/STORAGE/{}".format(target)
+        fileserver = "192.168.1.24"
+
+        shell = spur.SshShell(hostname="fileserver", username="mark", missing_host_key=spur.ssh.MissingHostKey.warn)
+        target_path = "/files/{}".format(target)
         result = shell.run(["/opt/solr/bin/post", "-c", "fs-core", target_path])
         # result = shell.run(["ls", "-al", "/."])
 
         statusText.set("/opt/solr/bin/post on fileserver is complete with a return code of {}".format(result.return_code))
+        message.configure(fg="dark green")
+
+        # print result.output
+
+
+    def button_solr_query_callback():
+        """ what to do when the "Query Solr on Fileserver" button is pressed """
+
+        target = entry.get()
+        statusText.set("Solr query {} is running on fileserver...".format(target))
+        message.configure(fg="red")
+        message.update()
+
+        shell = spur.SshShell(hostname="fileserver", username="mark", missing_host_key=spur.ssh.MissingHostKey.warn)
+        query = "http://localhost:8983/solr/fs-core/select?q={}".format(target)
+        result = shell.run(["curl", query])
+        # result = shell.run(["ls", "-al", "/."])
+
+        statusText.set("Solr query is complete with output...\n{}".format(result.output))
         message.configure(fg="dark green")
 
         # print result.output
@@ -241,14 +262,14 @@ def gui():
     
     root = Tk()
     root.title("McFate Household CPanel v1.0")
-    root.geometry("1000x275")
+    root.geometry("1000x350")
     frame = Frame(root)
     frame.pack()
     
     statusText = StringVar(root)
     statusText.set("Browse to open a file OR choose an operation to perform.")
     
-    label = Label(root, text="Selected file:")
+    label = Label(root, text="Input or selected file/folder:")
     label.pack(padx=10)
     entry = Entry(root, width=80, justify='center')
     entry.pack(padx=10)
@@ -258,11 +279,13 @@ def gui():
     button_browse = Button(root, text="Browse", command=button_browse_callback)
     button_backup_email = Button(root, text="Backup _Archived_EMail_ from Mark's MacBook", command=button_backup_email_callback)
     button_solr_post = Button(root, text="Post //fileserver/files/STORAGE/? Files to Solr", command=button_solr_post_callback)
+    button_solr_query = Button(root, text="Query Solr on fileserver", command=button_solr_query_callback)
     button_help = Button(root, text="Help", command=button_help_callback)
     button_exit = Button(root, text="Exit", command=sys.exit)
     button_browse.pack()
     button_backup_email.pack()
     button_solr_post.pack()
+    button_solr_query.pack()
     button_help.pack()
     button_exit.pack()
 

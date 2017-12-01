@@ -50,21 +50,25 @@ B19B-E8EC0EA9260C 
 
 Use this command to run a Solr POST command of the form...
 ```
-/opt/solr/bin/post -c fs-core /files/STORAGE/<folder>
+/opt/solr/bin/post -c fs-core /files/<folder>
 ```
 ...on //fileserver/files where the target _folder_ is specified using the **Browse** button and field.
 
 Note that you may be unable to use the **Browse** button to select a target folder but you must make sure the target field contains a string matching one of these choices:
-  * _AUDIO
-  * ~~_BINARIES~~
-  * _CODE
-  * _DATA
-  * _DOCUMENTS
-  * _HOME_BACKUP
-  * _IMAGES
-  * _MAIL
-  * _MISC
-  * _PHOTOS
-  * _VIDEOS
+  * STORAGE/_AUDIO
+  * ~~STORAGE/_BINARIES~~
+  * STORAGE/_CODE
+  * STORAGE/_DATA
+  * STORAGE/_DOCUMENTS
+  * STORAGE/_HOME_BACKUP
+  * STORAGE/_IMAGES
+  * STORAGE/_MAIL
+  * STORAGE/_MISC
+  * STORAGE/_PHOTOS
+  * STORAGE/_VIDEOS
+  * GENEALOGY
+  * NEAT
+  * ~~RESCUE~~
 
-  Or, leave the field blank to choose ALL folders under //fileserver/files/STORAGE (not recommended!).
+
+  Or, leave the field blank to choose ALL folders under //fileserver/files (not recommended!).

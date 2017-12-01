@@ -542,7 +542,7 @@ The affected Mail.app mailboxes in  /Users/mark/Library/V3 may include:</p>
 <li>admin@SummittServices.com </li>
 <li>summittservices60@gmail.com  </li>
 </ul>
-<h2 id="workflow">Workflow</h2>
+<h2>Workflow</h2>
 <ol>
 <li>In the Mail.app select all messages then  <strong>Message</strong> | <strong>Apply Rules</strong>.
 Be sure to do this for all inboxes and sent mail!
@@ -569,20 +569,23 @@ This runs a command of the form...<pre class="editor-colors lang-"><div class="l
 </ol>
 <h1>Post //fileserver/files/STORAGE/? Files to Solr</h1>
 <p>Use this command to run a Solr POST command of the form...</p>
-<pre class="editor-colors lang-"><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>/opt/solr/bin/post&nbsp;-c&nbsp;fs-core&nbsp;/files/STORAGE/&lt;folder&gt;</span></span></div></pre><p>...on //fileserver/files where the target <em>folder</em> is specified using the <strong>Browse</strong> button and field.</p>
+<pre class="editor-colors lang-"><div class="line"><span class="syntax--text syntax--plain syntax--null-grammar"><span>/opt/solr/bin/post&nbsp;-c&nbsp;fs-core&nbsp;/files/&lt;folder&gt;</span></span></div></pre><p>...on //fileserver/files where the target <em>folder</em> is specified using the <strong>Browse</strong> button and field.</p>
 <p>Note that you may be unable to use the <strong>Browse</strong> button to select a target folder but you must make sure the target field contains a string matching one of these choices:</p>
 <ul>
-<li>_AUDIO</li>
-<li><del>_BINARIES</del></li>
-<li>_CODE</li>
-<li>_DATA</li>
-<li>_DOCUMENTS</li>
-<li>_HOME_BACKUP</li>
-<li>_IMAGES</li>
-<li>_MAIL</li>
-<li>_MISC</li>
-<li>_PHOTOS</li>
-<li>_VIDEOS</li>
+<li>STORAGE/_AUDIO</li>
+<li><del>STORAGE/_BINARIES</del></li>
+<li>STORAGE/_CODE</li>
+<li>STORAGE/_DATA</li>
+<li>STORAGE/_DOCUMENTS</li>
+<li>STORAGE/_HOME_BACKUP</li>
+<li>STORAGE/_IMAGES</li>
+<li>STORAGE/_MAIL</li>
+<li>STORAGE/_MISC</li>
+<li>STORAGE/_PHOTOS</li>
+<li>STORAGE/_VIDEOS</li>
+<li>GENEALOGY</li>
+<li>NEAT</li>
+<li><del>RESCUE</del></li>
 </ul>
-<p>Or, leave the field blank to choose ALL folders under //fileserver/files/STORAGE (not recommended!).</p></body>
+<p>  Or, leave the field blank to choose ALL folders under //fileserver/files (not recommended!).</p></body>
 </html>
