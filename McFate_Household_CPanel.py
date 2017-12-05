@@ -118,10 +118,10 @@ def gui():
       message.configure(fg="dark green")
   
   def button_backup_NEAT_Exports_callback():
-    """ what to do when the "Backup NEAT-Exports" button is pressed """
+    """ what to do when the "Backup NEAT Exports" button is pressed """
     
-    """ check if NEAT_Exports exists and has files, and if /Volumes/files is mounted """
-    directory = "/Volumes/iMac500GB/NEAT_Exports"
+    """ check if iMac500GB exists and has files, and if /Volumes/files is mounted """
+    directory = "/Volumes/iMac500GB"
     volume = "/Volumes/files"
     
     if not os.path.isdir(directory):
@@ -140,14 +140,14 @@ def gui():
       
       bashCommand = "/usr/bin/python " \
                     "/Users/markmcfate/Projects/Python/home_backup/home_backup/home_backup.py " \
-                    "/Volumes/iMac500GB/NEAT_Exports /Volumes/files/NEAT -c " \
+                    "/Volumes/iMac500GB/*.pdf /Volumes/files/NEAT/NEAT_Exports -c " \
                     "./rsync_config.properties -m " \
                     "mark@tamatoledo.net -l ./home_backup.log --remove -u -d"
       process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
       output, error = process.communicate()
       
       statusText.set(
-        "home_backup.py to NEAT is finished. You should take steps to clean out {}.".format(directory))
+        "home_backup.py to NEAT is finished. You should take steps to clean out {} if necessary.".format(directory))
       message.configure(fg="dark green")
     
   
@@ -178,7 +178,7 @@ def gui():
   button_browse = Button(root, text="Browse", command=button_browse_callback)
   button_backup_email = Button(root, text="Backup _Archived_EMail_ from Mark's MacBook",
                                command=button_backup_email_callback)
-  button_backup_NEAT_Exports = Button(root, text="Backup NEAT_Exports from Mark's iMac",
+  button_backup_NEAT_Exports = Button(root, text="Backup NEAT Exports from Mark's iMac",
                                command=button_backup_NEAT_Exports_callback)
   button_solr_post = Button(root, text="Post //fileserver/files/? Files to Solr",
                             command=button_solr_post_callback)
