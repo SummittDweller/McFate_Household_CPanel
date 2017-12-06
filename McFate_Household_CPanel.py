@@ -140,9 +140,9 @@ def gui():
       
       bashCommand = "/usr/bin/python " \
                     "/Users/markmcfate/Projects/Python/home_backup/home_backup/home_backup.py " \
-                    "/Volumes/iMac500GB/*.pdf /Volumes/files/NEAT/NEAT_Exports -c " \
-                    "./rsync_config.properties -m " \
-                    "mark@tamatoledo.net -l ./home_backup.log --remove -u -d"
+                    "/Volumes/iMac500GB/ /Volumes/files/NEAT/NEAT_Exports -c " \
+                    "./rsync_config.properties -m mark@tamatoledo.net " \
+                    "-l ./home_backup.log -e .* --remove -u -d"
       process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
       output, error = process.communicate()
       
