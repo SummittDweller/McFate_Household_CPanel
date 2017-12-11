@@ -15,7 +15,7 @@ import glob
 import argparse
 import tkFileDialog
 import subprocess
-import spur  # use 'pip install spur' to install
+import spur
 import webbrowser
 import json
 from Tkinter import *  # use 'brew install homebrew/dupes/tcl-tk' to install
@@ -108,7 +108,7 @@ def gui():
       message.configure(fg="red")
       message.update()
       
-      bashCommand = "/usr/bin/python /Users/mark/Projects/Python/home_backup/home_backup/home_backup.py /Users/mark/Documents/_Archived_EMail_/ /Volumes/files/STORAGE/_MAIL/ -c ./rsync_config.properties -m mark@tamatoledo.net -l ./home_backup.log --remove -u -d"
+      bashCommand = "/usr/bin/python /Users/mark/Projects/Python/home_backup/home_backup/home_backup.py /Users/mark/Documents/_Archived_EMail_/ /Volumes/files/STORAGE/_MAIL/ -c ./rsync_config.properties -m mark@tamatoledo.net -l ./home_backup.log --remove -b -d"
       process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
       output, error = process.communicate()
       
@@ -142,7 +142,7 @@ def gui():
                     "/Users/markmcfate/Projects/Python/home_backup/home_backup/home_backup.py " \
                     "/Volumes/iMac500GB/ /Volumes/files/NEAT/NEAT_Exports -c " \
                     "./rsync_config.properties -m mark@tamatoledo.net " \
-                    "-l ./home_backup.log -e .* --remove -u -d"
+                    "-l ./home_backup.log -e .* --remove -b -d"
       process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
       output, error = process.communicate()
       
