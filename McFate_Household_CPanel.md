@@ -1,6 +1,6 @@
 # Backup \_Archived\_EMail_ from Mark's MacBook
 
-This button completes step 4 in the documented workflow for archival of PDF files created from email
+This button completes step 5 in the documented workflow for archival of PDF files created from email
 messages (mailboxes) on Mark's MacBook.  
 The affected Mail.app mailboxes include:
 
