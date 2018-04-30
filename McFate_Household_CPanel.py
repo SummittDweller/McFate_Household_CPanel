@@ -91,7 +91,7 @@ def gui():
     """ what to do when the "Backup _Archived_EMail_" button is pressed """
     
     """ check if _Archived_EMail_ exists and has files, and if /Volumes/files is mounted """
-    directory = "/Users/mark/Documents/_Archived_EMail_"
+    directory = "/Users/mark/_Archived_EMail_"
     volume = "/Volumes/files"
     
     if not os.path.isdir(directory):
@@ -108,7 +108,7 @@ def gui():
       message.configure(fg="red")
       message.update()
       
-      bashCommand = "/usr/bin/python /Users/mark/Projects/Python/home_backup/home_backup/home_backup.py /Users/mark/Documents/_Archived_EMail_/ /Volumes/files/STORAGE/_MAIL/ -c ./rsync_config.properties -m mark@tamatoledo.net -l ./home_backup.log --remove -b -d"
+      bashCommand = "/usr/bin/python /Users/mark/Projects/Python/home_backup/home_backup/home_backup.py /Users/mark/_Archived_EMail_/ /Volumes/files/STORAGE/_MAIL/ -c ./rsync_config.properties -m mark@tamatoledo.net -l ./home_backup.log --remove -b -d"
       process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
       output, error = process.communicate()
       
